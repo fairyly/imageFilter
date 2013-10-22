@@ -1,0 +1,173 @@
+{
+    "project": {},
+    "files": {
+        "1.0\\index.js": {
+            "name": "1.0\\index.js",
+            "modules": {
+                "imageFilter": 1
+            },
+            "classes": {
+                "ImageFilter": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruntfile.js": {
+            "name": "Gruntfile.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "imageFilter": {
+            "name": "imageFilter",
+            "submodules": {},
+            "classes": {
+                "ImageFilter": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "1.0\\index.js",
+            "line": 7,
+            "imagefilter": "",
+            "author": "jiali<xiaofeng.mxf@taobao.com>"
+        }
+    },
+    "classes": {
+        "ImageFilter": {
+            "name": "ImageFilter",
+            "shortname": "ImageFilter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "imageFilter",
+            "namespace": "",
+            "file": "1.0\\index.js",
+            "line": 7,
+            "is_constructor": 1,
+            "extends": "Base"
+        }
+    },
+    "classitems": [
+        {
+            "file": "1.0\\index.js",
+            "line": 121,
+            "description": "转换为灰度图",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "灰度计算方法，average/max/\"\"(加权)",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "_self",
+                "type": "_self"
+            },
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "1.0\\index.js",
+            "line": 146,
+            "itemtype": "method",
+            "name": "setBrightness",
+            "params": [
+                {
+                    "name": "level",
+                    "description": "[description]",
+                    "type": "[type]"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "1.0\\index.js",
+            "line": 356,
+            "description": "Converts an RGB color value to HSL. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes r, g, and b are contained in the set [0, 255] and\nreturns h, s, and l in the set [0, 1].",
+            "params": [
+                {
+                    "name": "Number",
+                    "description": "r             The red color value"
+                },
+                {
+                    "name": "Number",
+                    "description": "g             The green color value"
+                },
+                {
+                    "name": "Number",
+                    "description": "b             The blue color value"
+                }
+            ],
+            "return": {
+                "description": "Array                   The HSL representation"
+            },
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "1.0\\index.js",
+            "line": 392,
+            "description": "Converts an HSL color value to RGB. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes h, s, and l are contained in the set [0, 1] and\nreturns r, g, and b in the set [0, 255].",
+            "params": [
+                {
+                    "name": "Number",
+                    "description": "h       The hue"
+                },
+                {
+                    "name": "Number",
+                    "description": "s       The saturation"
+                },
+                {
+                    "name": "Number",
+                    "description": "l       The lightness"
+                }
+            ],
+            "return": {
+                "description": "Array           The RGB representation"
+            },
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "Gruntfile.js",
+            "line": 32,
+            "description": "对JS文件进行压缩",
+            "link": "https://github.com/gruntjs/grunt-contrib-uglify",
+            "class": "",
+            "module": "imageFilter"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: imagefilter",
+            "line": " 1.0\\index.js:1"
+        },
+        {
+            "message": "unknown tag: link",
+            "line": " Gruntfile.js:32"
+        },
+        {
+            "message": "Missing item type\n转换为灰度图",
+            "line": " 1.0\\index.js:121"
+        },
+        {
+            "message": "Missing item type\nConverts an RGB color value to HSL. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes r, g, and b are contained in the set [0, 255] and\nreturns h, s, and l in the set [0, 1].",
+            "line": " 1.0\\index.js:356"
+        },
+        {
+            "message": "Missing item type\nConverts an HSL color value to RGB. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes h, s, and l are contained in the set [0, 1] and\nreturns r, g, and b in the set [0, 255].",
+            "line": " 1.0\\index.js:392"
+        },
+        {
+            "message": "Missing item type\n对JS文件进行压缩",
+            "line": " Gruntfile.js:32"
+        }
+    ]
+}

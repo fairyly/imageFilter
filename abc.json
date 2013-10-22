@@ -1,0 +1,14 @@
+{
+    "name": "imageFilter",
+    "version": "1.0",
+    "desc": "",
+    "cover": "",
+    "tag":"",
+    "author": {
+        "name": "jiali",
+        "email": "ottomao@gmail.com",
+        "page": "https://github.com/ottomao"
+    },
+    "type": "kissy-gallery",
+    "type-url": "http://gallery.kissyui.com/guide"
+}

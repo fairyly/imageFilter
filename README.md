@@ -7,4 +7,4 @@ imageFilter是一个图像处理的类库，用于实现实现图像滤镜与处
 * demo：[http://gallery.kissyui.com/imageFilter/1.0/demo/index.html](http://gallery.kissyui.com/imageFilter/1.0/demo/index.html)
 
 * 效果Preview
-!(preview)[http://gtms01.alicdn.com/tps/i1/T1q7TZFjhaXXXaBufQ-986-1813.jpg]
+![preview](http://gtms01.alicdn.com/tps/i1/T1q7TZFjhaXXXaBufQ-986-1813.jpg)

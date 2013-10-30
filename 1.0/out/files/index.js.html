@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>index.js</title>
+    <title>index.js - Image Filter</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title=""></h1>
+                <h1><img src="../assets/css/logo.png" title="Image Filter"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: </em>
+            <em>API Docs for: 1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,10 +95,11 @@
  **/
 KISSY.add(function (S,Dom, Node,Base) {
     /**
-     * 
+     * 用于实现图像滤镜与处理，包括明度、饱和度、高斯模糊、做旧效果、四角压暗、灰度、切割等等。
      * @class ImageFilter
      * @constructor
      * @extends Base
+     * @param  {object} comConfig 需要处理的原始img节点 { &quot;imgNode&quot;: [HTMLElement] }
      */
     function ImageFilter(comConfig) {
         var _self = this;
@@ -177,6 +178,7 @@ KISSY.add(function (S,Dom, Node,Base) {
         _canvas.height = _self._height;
         _canvas.width  = _self._width;
         Dom.append(_canvas,&quot;body&quot;);
+
         _canvasCtx = _canvas.getContext(&quot;2d&quot;);
 
         //get srcData
@@ -234,6 +236,7 @@ KISSY.add(function (S,Dom, Node,Base) {
         //
         
         /**
+         * 设置图片平均亮度
          * @method setBrightness
          * @param {number} level 亮度值,取[-100,100]
          */
@@ -248,9 +251,10 @@ KISSY.add(function (S,Dom, Node,Base) {
 
       
         /**
+         * 设置图片对比度
          * @method setContrast
-         * @param {[number]} level        亮度等级，取值[-100,100]
-         * @param {[boolean]} ifCalAverage 是否重新计算亮度值，false时取默认128
+         * @param {number} level        对比度等级，取值[-100,100]
+         * @param {boolean} [ifCalAverage=false] 是否重新计算亮度值(更精准，但速度慢），false时取默认平均亮度为128
          */
         _self.setContrast = function(level, ifCalAverage){
             var average = 128;
@@ -279,6 +283,7 @@ KISSY.add(function (S,Dom, Node,Base) {
         };
 
         /**
+         * 对图片做反色处理（负片效果）
          * @method reverse
          */
         _self.reverse = function(){
@@ -295,6 +300,7 @@ KISSY.add(function (S,Dom, Node,Base) {
         }
 
         /**
+         * 对图片做四角压暗/变亮
          * @method  vignetting 
          * @param  {number} maxLevel 最边缘处的亮度值，[-100,100]
          * @param  {number} radius   中心半径值，默认为半宽度的0.35倍
@@ -312,7 +318,6 @@ KISSY.add(function (S,Dom, Node,Base) {
 
                 var offsetDistance = Math.sqrt(centerDistanceSqr) - radius;
                 var currentLevel   = (offsetDistance / maxOffset) * (offsetDistance / maxOffset) * maxLevel;
-                // debugger
                 _handleBrightness(originData,x,y,currentLevel);
 
             });
@@ -326,6 +331,7 @@ KISSY.add(function (S,Dom, Node,Base) {
         // }
 
         /**
+         * 设置图片透明度
          * @method setOpacity
          * @param {number} level 透明度，取值[0,1]
          */
@@ -341,8 +347,9 @@ KISSY.add(function (S,Dom, Node,Base) {
         };
 
         /**
-         * @method blur
-         * @param  {number} radius 模糊半径，大于1
+         * 对图片做高斯模糊处理
+         * @method blur 
+         * @param  {number} [radius=1] 模糊半径，越大越模糊。必须为大于1的整数。
          */
         _self.blur = function(radius,sigma){
             sigma = 1.5 || sigma;
@@ -402,19 +409,71 @@ KISSY.add(function (S,Dom, Node,Base) {
             return _self;
         };
 
+        /**
+         * 对图片混入褐色，显做旧效果
+         * @method mixBrown
+         * @param  {Array} [customRGB=[208,163,79]] 自定义褐色的RGB值,默认[208,163,79]
+         */
+        _self.mixBrown = function(customRGB){
+            _traversePixel(function(originData,x,y){
+                var overlayRGB = customRGB || [208 ,163,79];
+                // var overlayRGB = [224 ,193,137];
+                var outputRGB  = [];
+                outputRGB[0] = originData[0] &lt; overlayRGB[0] ? originData[0] : overlayRGB[0];
+                outputRGB[1] = originData[1] &lt; overlayRGB[1] ? originData[1] : overlayRGB[1];
+                outputRGB[2] = originData[2] &lt; overlayRGB[2] ? originData[2] : overlayRGB[2];
+                
+                _srcImgData.setData(x , y ,&quot;rgb&quot; , outputRGB);  // will auto fit to [0,255]
+            });
 
-        _self.darken = function(x,y,width,height){
-            //TODO : darken
+            _updateCanvasDraw();
+            return _self;
+        }
+
+        /**
+         * 混色(混合方法：变暗)
+         * @method mixColor
+         * @param  {Array} customRGB 需要混入的RGB值
+         */
+        _self.mixColor = function(customRGB){
+            if(!customRGB) return;
+            _traversePixel(function(originData,x,y){
+                var outputRGB  = [];
+                outputRGB[0] = originData[0] &lt; customRGB[0] ? originData[0] : customRGB[0];
+                outputRGB[1] = originData[1] &lt; customRGB[1] ? originData[1] : customRGB[1];
+                outputRGB[2] = originData[2] &lt; customRGB[2] ? originData[2] : customRGB[2];
+                
+                _srcImgData.setData(x , y ,&quot;rgb&quot; , outputRGB);  // will auto fit to [0,255]
+            });
+
+            _updateCanvasDraw();
+            return _self;
+        }
+
+        //线性光
+        //完善中
+        _self.light = function(customRGB){
+            _traversePixel(function(originData,x,y){
+                var overlayRGB = [24,65,41] ;
+                var outputRGB  = [];
+                outputRGB[0] = Math.min(255, Math.max(0, (overlayRGB[0] + 2 * originData[0]) - 1));
+                outputRGB[1] = Math.min(255, Math.max(1, (overlayRGB[1] + 2 * originData[1]) - 1));
+                outputRGB[2] = Math.min(255, Math.max(2, (overlayRGB[2] + 2 * originData[2]) - 1));               
+                _srcImgData.setData(x , y ,&quot;rgb&quot; , outputRGB);  // will auto fit to [0,255]
+            });
+
+            _updateCanvasDraw();
+            return _self;
         }
 
 
         /**
+         * 切割图片
          * @method crop
-         * @param  {number} x      startX
-         * @param  {number} y      startY
-         * @param  {number} width  width
-         * @param  {number} height height
-         * @return {[type]}        [description]
+         * @param  {number} x      起始位置的x坐标
+         * @param  {number} y      起始位置的y坐标
+         * @param  {number} width  切割宽度
+         * @param  {number} height 切割高度
          */
         _self.crop = function(x,y,width,height){
             x = x || 0;
@@ -435,6 +494,7 @@ KISSY.add(function (S,Dom, Node,Base) {
         _self.rotate = function(degree){
             //canvas copy
             var tempCanvas    = Dom.create(&#x27;&lt;canvas&gt;&#x27;);
+
             tempCanvas.height = _self._height;
             tempCanvas.width  = _self._width;
             tempCanvas.getContext(&quot;2d&quot;).drawImage(_canvas,0,0);
@@ -458,28 +518,34 @@ KISSY.add(function (S,Dom, Node,Base) {
             return _self;
         }
 
-        _self.getImgSrc = function(){
+        /**
+         * 获取图片Base64编码
+         * @method getImageSrc
+         * @return {string} base64编码后的png图片，可以用在img标签的src属性中。
+         */
+        _self.getImageSrc = function(){
             return _canvas.toDataURL(&quot;image/png&quot;);
         };
 
         /**
+         * 渲染图片。只有在render后才能在界面上看到图像处理的结果。
          * @method render
-         * @param  {HTML element} target 将图像渲染到img节点，默认为初始化时的节点
+         * @param  {HTMLElement} [target] 将图像渲染到target节点(其标签须是img)，默认为组建初始化时传入的节点
          */
         _self.render = function(target){
             target = target || _imgNode;
-            target.src = _self.getImgSrc();
+            target.src = _self.getImageSrc();
             return _self;
         };
 
         /**
-         * @method destroy 销毁组件
+         * 销毁组件
+         * @method destroy 
          */
         _self.destroy = function(){
             Dom.remove(_canvas);
         };
 
-        //_srcImgData.gray();
 
         //from : https://gist.github.com/mjijackson/5311256
         /**
@@ -557,9 +623,9 @@ KISSY.add(function (S,Dom, Node,Base) {
         }
           
     }
-    S.extend(ImageFilter, Base, /** @lends ImageFilter.prototype*/{
+    S.extend(ImageFilter, Base, {
 
-    }, {ATTRS : /** @lends ImageFilter*/{
+    }, {ATTRS :{
 
     }});
     return ImageFilter;

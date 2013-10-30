@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ImageFilter</title>
+    <title>ImageFilter - Image Filter</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title=""></h1>
+                <h1><img src="../assets/css/logo.png" title="Image Filter"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: </em>
+            <em>API Docs for: 1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -112,7 +112,8 @@
 
 
 <div class="box intro">
-    
+    <p>用于实现图像滤镜与处理，包括明度、饱和度、高斯模糊、做旧效果、四角压暗、灰度、切割等等。</p>
+
 </div>
 
 
@@ -122,7 +123,17 @@
     <h3 class="name"><code>ImageFilter</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>comConfig</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -165,6 +176,30 @@
     </div>
 
     
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">comConfig</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>需要处理的原始img节点 { &quot;imgNode&quot;: [HTMLElement] }</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
 
     
 
@@ -204,6 +239,13 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_blur">blur</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_crop">crop</a>
 
                                 
@@ -211,7 +253,70 @@
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_destroy 销毁组件">destroy 销毁组件</a>
+                                <a href="#method_crop">crop</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_destroy">destroy</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_destroy">destroy</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getImageSrc">getImageSrc</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getImageSrc">getImageSrc</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_mixBrown">mixBrown</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_mixBrown">mixBrown</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_mixColor">mixColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_mixColor">mixColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_render">render</a>
 
                                 
                                 
@@ -232,6 +337,20 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_reverse">reverse</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setBrightness">setBrightness</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_setBrightness">setBrightness</a>
 
                                 
@@ -246,7 +365,28 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_setContrast">setContrast</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_setOpacity">setOpacity</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setOpacity">setOpacity</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_vignetting">vignetting</a>
 
                                 
                                 
@@ -284,7 +424,7 @@
             
                 <li class="arg">
                     
-                        <code>radius</code>
+                        <code class="optional">[radius=1]</code>
                     
                 </li>
             
@@ -317,7 +457,7 @@
             
         
         
-        <a href="../files/index.js.html#l253"><code>index.js:253</code></a>
+        <a href="../files/index.js.html#l259"><code>index.js:259</code></a>
         
         </p>
 
@@ -328,7 +468,8 @@
     </div>
 
     <div class="description">
-        
+        <p>对图片做高斯模糊处理</p>
+
     </div>
 
     
@@ -339,14 +480,105 @@
             
                 <li class="param">
                     
-                        <code class="param-name">radius</code>
+                        <code class="param-name optional">[radius=1]</code>
                         <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>模糊半径，大于1</p>
+                        <p>模糊半径，越大越模糊。必须为大于1的整数。</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_blur" class="method item">
+    <h3 class="name"><code>blur</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[radius=1]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/build_index.js.html#l265"><code>build\index.js:265</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>对图片做高斯模糊处理</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[radius=1]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>模糊半径，越大越模糊。必须为大于1的整数。</p>
 
                     </div>
 
@@ -399,10 +631,6 @@
     
 
     
-        <span class="returns-inline">
-            <span class="type">type</span>
-        </span>
-    
 
     
 
@@ -427,7 +655,7 @@
             
         
         
-        <a href="../files/index.js.html#l321"><code>index.js:321</code></a>
+        <a href="../files/index.js.html#l380"><code>index.js:380</code></a>
         
         </p>
 
@@ -438,7 +666,8 @@
     </div>
 
     <div class="description">
-        
+        <p>切割图片</p>
+
     </div>
 
     
@@ -456,7 +685,7 @@
                     
 
                     <div class="param-description">
-                        <p>startX</p>
+                        <p>起始位置的x坐标</p>
 
                     </div>
 
@@ -472,7 +701,7 @@
                     
 
                     <div class="param-description">
-                        <p>startY</p>
+                        <p>起始位置的y坐标</p>
 
                     </div>
 
@@ -488,7 +717,7 @@
                     
 
                     <div class="param-description">
-                        <p>width</p>
+                        <p>切割宽度</p>
 
                     </div>
 
@@ -504,7 +733,7 @@
                     
 
                     <div class="param-description">
-                        <p>height</p>
+                        <p>切割高度</p>
 
                     </div>
 
@@ -516,81 +745,13 @@
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">type</span>:
-                    
-                    <p>[description]</p>
-
-                
-            </div>
-        </div>
-    
 
     
 </div>
 
                 
-                    <div id="method_destroy 销毁组件" class="method item">
-    <h3 class="name"><code>destroy 销毁组件</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/index.js.html#l385"><code>index.js:385</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_render" class="method item">
-    <h3 class="name"><code>render</code></h3>
+                    <div id="method_crop" class="method item">
+    <h3 class="name"><code>crop</code></h3>
 
     
         <div class="args">
@@ -598,7 +759,25 @@
             
                 <li class="arg">
                     
-                        <code>target</code>
+                        <code>x</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>y</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>width</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>height</code>
                     
                 </li>
             
@@ -631,7 +810,7 @@
             
         
         
-        <a href="../files/index.js.html#l375"><code>index.js:375</code></a>
+        <a href="../files/build_index.js.html#l386"><code>build\index.js:386</code></a>
         
         </p>
 
@@ -642,7 +821,8 @@
     </div>
 
     <div class="description">
-        
+        <p>切割图片</p>
+
     </div>
 
     
@@ -653,14 +833,856 @@
             
                 <li class="param">
                     
-                        <code class="param-name">target</code>
-                        <span class="type">HTML element</span>
+                        <code class="param-name">x</code>
+                        <span class="type">Number</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>将图像渲染到img节点，默认为初始化时的节点</p>
+                        <p>起始位置的x坐标</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">y</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>起始位置的y坐标</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">width</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>切割宽度</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">height</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>切割高度</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_destroy" class="method item">
+    <h3 class="name"><code>destroy</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/index.js.html#l451"><code>index.js:451</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>销毁组件</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_destroy" class="method item">
+    <h3 class="name"><code>destroy</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/build_index.js.html#l457"><code>build\index.js:457</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>销毁组件</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_getImageSrc" class="method item">
+    <h3 class="name"><code>getImageSrc</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/index.js.html#l431"><code>index.js:431</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>获取图片Base64编码</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String</span>:
+                    
+                    <p>base64编码后的png图片，可以用在img标签的src属性中。</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getImageSrc" class="method item">
+    <h3 class="name"><code>getImageSrc</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/build_index.js.html#l437"><code>build\index.js:437</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>获取图片Base64编码</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String</span>:
+                    
+                    <p>base64编码后的png图片，可以用在img标签的src属性中。</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_mixBrown" class="method item">
+    <h3 class="name"><code>mixBrown</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[customRGB=[208,163,79]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/build_index.js.html#l328"><code>build\index.js:328</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>对图片混入褐色，显做旧效果</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[customRGB=[208,163,79]</code>
+                        <span class="type">Array</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>自定义褐色的RGB值,默认[208,163,79]</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_mixBrown" class="method item">
+    <h3 class="name"><code>mixBrown</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[customRGB=[208,163,79]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/index.js.html#l322"><code>index.js:322</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>对图片混入褐色，显做旧效果</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[customRGB=[208,163,79]</code>
+                        <span class="type">Array</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>自定义褐色的RGB值,默认[208,163,79]</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_mixColor" class="method item">
+    <h3 class="name"><code>mixColor</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>customRGB</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/build_index.js.html#l349"><code>build\index.js:349</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>混色(混合方法：变暗)</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">customRGB</code>
+                        <span class="type">Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>需要混入的RGB值</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_mixColor" class="method item">
+    <h3 class="name"><code>mixColor</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>customRGB</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/index.js.html#l343"><code>index.js:343</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>混色(混合方法：变暗)</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">customRGB</code>
+                        <span class="type">Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>需要混入的RGB值</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_render" class="method item">
+    <h3 class="name"><code>render</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[target]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/build_index.js.html#l446"><code>build\index.js:446</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>渲染图片。只有在render后才能在界面上看到图像处理的结果。</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[target]</code>
+                        <span class="type">HTML element</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>将图像渲染到target节点(其标签须是img)，默认为组建初始化时传入的节点</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_render" class="method item">
+    <h3 class="name"><code>render</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[target]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/index.js.html#l440"><code>index.js:440</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>渲染图片。只有在render后才能在界面上看到图像处理的结果。</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[target]</code>
+                        <span class="type">HTMLElement</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>将图像渲染到target节点(其标签须是img)，默认为组建初始化时传入的节点</p>
 
                     </div>
 
@@ -709,7 +1731,7 @@
             
         
         
-        <a href="../files/index.js.html#l191"><code>index.js:191</code></a>
+        <a href="../files/build_index.js.html#l201"><code>build\index.js:201</code></a>
         
         </p>
 
@@ -720,7 +1742,63 @@
     </div>
 
     <div class="description">
+        <p>对图片做反色处理（负片效果）</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_reverse" class="method item">
+    <h3 class="name"><code>reverse</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/index.js.html#l195"><code>index.js:195</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>对图片做反色处理（负片效果）</p>
+
     </div>
 
     
@@ -773,7 +1851,7 @@
             
         
         
-        <a href="../files/index.js.html#l146"><code>index.js:146</code></a>
+        <a href="../files/build_index.js.html#l154"><code>build\index.js:154</code></a>
         
         </p>
 
@@ -784,7 +1862,97 @@
     </div>
 
     <div class="description">
+        <p>设置图片平均亮度</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">level</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>亮度值,取[-100,100]</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setBrightness" class="method item">
+    <h3 class="name"><code>setBrightness</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>level</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/index.js.html#l148"><code>index.js:148</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>设置图片平均亮度</p>
+
     </div>
 
     
@@ -834,7 +2002,7 @@
             
                 <li class="arg">
                     
-                        <code>ifCalAverage</code>
+                        <code class="optional">[ifCalAverage=false]</code>
                     
                 </li>
             
@@ -867,7 +2035,7 @@
             
         
         
-        <a href="../files/index.js.html#l160"><code>index.js:160</code></a>
+        <a href="../files/index.js.html#l163"><code>index.js:163</code></a>
         
         </p>
 
@@ -878,7 +2046,120 @@
     </div>
 
     <div class="description">
+        <p>设置图片对比度</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">level</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>对比度等级，取值[-100,100]</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[ifCalAverage=false]</code>
+                        <span class="type">Boolean</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>是否重新计算亮度值(更精准，但速度慢），false时取默认平均亮度为128</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setContrast" class="method item">
+    <h3 class="name"><code>setContrast</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>level</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[ifCalAverage=false]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/build_index.js.html#l169"><code>build\index.js:169</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>设置图片对比度</p>
+
     </div>
 
     
@@ -896,7 +2177,7 @@
                     
 
                     <div class="param-description">
-                        <p>亮度等级，取值[-100,100]</p>
+                        <p>对比度等级，取值[-100,100]</p>
 
                     </div>
 
@@ -905,14 +2186,15 @@
             
                 <li class="param">
                     
-                        <code class="param-name">ifCalAverage</code>
+                        <code class="param-name optional">[ifCalAverage=false]</code>
                         <span class="type">boolean</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>是否重新计算亮度值，false时取默认128</p>
+                        <p>是否重新计算亮度值(更精准，但速度慢），false时取默认平均亮度为128</p>
 
                     </div>
 
@@ -971,7 +2253,7 @@
             
         
         
-        <a href="../files/index.js.html#l238"><code>index.js:238</code></a>
+        <a href="../files/index.js.html#l243"><code>index.js:243</code></a>
         
         </p>
 
@@ -982,7 +2264,97 @@
     </div>
 
     <div class="description">
+        <p>设置图片透明度</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">level</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>透明度，取值[0,1]</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setOpacity" class="method item">
+    <h3 class="name"><code>setOpacity</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>level</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/build_index.js.html#l249"><code>build\index.js:249</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>设置图片透明度</p>
+
     </div>
 
     
@@ -1065,7 +2437,7 @@
             
         
         
-        <a href="../files/index.js.html#l207"><code>index.js:207</code></a>
+        <a href="../files/index.js.html#l212"><code>index.js:212</code></a>
         
         </p>
 
@@ -1076,7 +2448,119 @@
     </div>
 
     <div class="description">
+        <p>对图片做四角压暗/变亮</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">maxLevel</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>最边缘处的亮度值，[-100,100]</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">radius</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>中心半径值，默认为半宽度的0.35倍</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_vignetting" class="method item">
+    <h3 class="name"><code>vignetting</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>maxLevel</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>radius</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/build_index.js.html#l218"><code>build\index.js:218</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>对图片做四角压暗/变亮</p>
+
     </div>
 
     

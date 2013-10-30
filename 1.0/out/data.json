@@ -1,11 +1,23 @@
 {
-    "project": {},
+    "project": {
+        "name": "Image Filter",
+        "description": "Kissy Widget for image processing",
+        "version": "1.0",
+        "url": "http://yuilibrary.com/"
+    },
     "files": {
-        "index.js": {
-            "name": "index.js",
+        "build\\index.js": {
+            "name": "build\\index.js",
             "modules": {
                 "imageFilter": 1
             },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "index.js": {
+            "name": "index.js",
+            "modules": {},
             "classes": {
                 "ImageFilter": 1
             },
@@ -42,14 +54,295 @@
             "namespace": "",
             "file": "index.js",
             "line": 7,
+            "description": "用于实现图像滤镜与处理，包括明度、饱和度、高斯模糊、做旧效果、四角压暗、灰度、切割等等。",
             "is_constructor": 1,
-            "extends": "Base"
+            "extends": "Base",
+            "params": [
+                {
+                    "name": "comConfig",
+                    "description": "需要处理的原始img节点 { \"imgNode\": [HTMLElement] }",
+                    "type": "Object"
+                }
+            ]
         }
     },
     "classitems": [
         {
+            "file": "build\\index.js",
+            "line": 129,
+            "description": "转换为灰度图",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "灰度计算方法，average/max/\"\"(加权)",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "_self",
+                "type": "_self"
+            },
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 154,
+            "description": "设置图片平均亮度",
+            "itemtype": "method",
+            "name": "setBrightness",
+            "params": [
+                {
+                    "name": "level",
+                    "description": "亮度值,取[-100,100]",
+                    "type": "Number"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 169,
+            "description": "设置图片对比度",
+            "itemtype": "method",
+            "name": "setContrast",
+            "params": [
+                {
+                    "name": "level",
+                    "description": "对比度等级，取值[-100,100]",
+                    "type": "[number]"
+                },
+                {
+                    "name": "ifCalAverage",
+                    "description": "是否重新计算亮度值(更精准，但速度慢），false时取默认平均亮度为128",
+                    "type": "[boolean]",
+                    "optional": true,
+                    "optdefault": "false"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 201,
+            "description": "对图片做反色处理（负片效果）",
+            "itemtype": "method",
+            "name": "reverse",
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 218,
+            "description": "对图片做四角压暗/变亮",
+            "itemtype": "method",
+            "name": "vignetting",
+            "params": [
+                {
+                    "name": "maxLevel",
+                    "description": "最边缘处的亮度值，[-100,100]",
+                    "type": "Number"
+                },
+                {
+                    "name": "radius",
+                    "description": "中心半径值，默认为半宽度的0.35倍",
+                    "type": "Number"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 249,
+            "description": "设置图片透明度",
+            "itemtype": "method",
+            "name": "setOpacity",
+            "params": [
+                {
+                    "name": "level",
+                    "description": "透明度，取值[0,1]",
+                    "type": "Number"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 265,
+            "description": "对图片做高斯模糊处理",
+            "itemtype": "method",
+            "name": "blur",
+            "params": [
+                {
+                    "name": "radius",
+                    "description": "模糊半径，越大越模糊。必须为大于1的整数。",
+                    "type": "Number",
+                    "optional": true,
+                    "optdefault": "1"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 328,
+            "description": "对图片混入褐色，显做旧效果",
+            "itemtype": "method",
+            "name": "mixBrown",
+            "params": [
+                {
+                    "name": "customRGB",
+                    "description": "自定义褐色的RGB值,默认[208,163,79]",
+                    "type": "Array",
+                    "optional": true,
+                    "optdefault": "[208,163,79"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 349,
+            "description": "混色(混合方法：变暗)",
+            "itemtype": "method",
+            "name": "mixColor",
+            "params": [
+                {
+                    "name": "customRGB",
+                    "description": "需要混入的RGB值",
+                    "type": "Array"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 386,
+            "description": "切割图片",
+            "itemtype": "method",
+            "name": "crop",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "起始位置的x坐标",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "起始位置的y坐标",
+                    "type": "Number"
+                },
+                {
+                    "name": "width",
+                    "description": "切割宽度",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "切割高度",
+                    "type": "Number"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 437,
+            "description": "获取图片Base64编码",
+            "itemtype": "method",
+            "name": "getImageSrc",
+            "return": {
+                "description": "base64编码后的png图片，可以用在img标签的src属性中。",
+                "type": "String"
+            },
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 446,
+            "description": "渲染图片。只有在render后才能在界面上看到图像处理的结果。",
+            "itemtype": "method",
+            "name": "render",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "将图像渲染到target节点(其标签须是img)，默认为组建初始化时传入的节点",
+                    "type": "HTML element",
+                    "optional": true
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 457,
+            "description": "销毁组件",
+            "itemtype": "method",
+            "name": "destroy",
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 467,
+            "description": "Converts an RGB color value to HSL. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes r, g, and b are contained in the set [0, 255] and\nreturns h, s, and l in the set [0, 1].",
+            "params": [
+                {
+                    "name": "Number",
+                    "description": "r             The red color value"
+                },
+                {
+                    "name": "Number",
+                    "description": "g             The green color value"
+                },
+                {
+                    "name": "Number",
+                    "description": "b             The blue color value"
+                }
+            ],
+            "return": {
+                "description": "Array                   The HSL representation"
+            },
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "build\\index.js",
+            "line": 503,
+            "description": "Converts an HSL color value to RGB. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes h, s, and l are contained in the set [0, 1] and\nreturns r, g, and b in the set [0, 255].",
+            "params": [
+                {
+                    "name": "Number",
+                    "description": "h       The hue"
+                },
+                {
+                    "name": "Number",
+                    "description": "s       The saturation"
+                },
+                {
+                    "name": "Number",
+                    "description": "l       The lightness"
+                }
+            ],
+            "return": {
+                "description": "Array           The RGB representation"
+            },
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
             "file": "index.js",
-            "line": 121,
+            "line": 123,
             "description": "转换为灰度图",
             "params": [
                 {
@@ -67,7 +360,8 @@
         },
         {
             "file": "index.js",
-            "line": 146,
+            "line": 148,
+            "description": "设置图片平均亮度",
             "itemtype": "method",
             "name": "setBrightness",
             "params": [
@@ -82,19 +376,22 @@
         },
         {
             "file": "index.js",
-            "line": 160,
+            "line": 163,
+            "description": "设置图片对比度",
             "itemtype": "method",
             "name": "setContrast",
             "params": [
                 {
                     "name": "level",
-                    "description": "亮度等级，取值[-100,100]",
-                    "type": "[number]"
+                    "description": "对比度等级，取值[-100,100]",
+                    "type": "Number"
                 },
                 {
                     "name": "ifCalAverage",
-                    "description": "是否重新计算亮度值，false时取默认128",
-                    "type": "[boolean]"
+                    "description": "是否重新计算亮度值(更精准，但速度慢），false时取默认平均亮度为128",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
                 }
             ],
             "class": "ImageFilter",
@@ -102,7 +399,8 @@
         },
         {
             "file": "index.js",
-            "line": 191,
+            "line": 195,
+            "description": "对图片做反色处理（负片效果）",
             "itemtype": "method",
             "name": "reverse",
             "class": "ImageFilter",
@@ -110,7 +408,8 @@
         },
         {
             "file": "index.js",
-            "line": 207,
+            "line": 212,
+            "description": "对图片做四角压暗/变亮",
             "itemtype": "method",
             "name": "vignetting",
             "params": [
@@ -130,7 +429,8 @@
         },
         {
             "file": "index.js",
-            "line": 238,
+            "line": 243,
+            "description": "设置图片透明度",
             "itemtype": "method",
             "name": "setOpacity",
             "params": [
@@ -145,13 +445,81 @@
         },
         {
             "file": "index.js",
-            "line": 253,
+            "line": 259,
+            "description": "对图片做高斯模糊处理",
             "itemtype": "method",
             "name": "blur",
             "params": [
                 {
                     "name": "radius",
-                    "description": "模糊半径，大于1",
+                    "description": "模糊半径，越大越模糊。必须为大于1的整数。",
+                    "type": "Number",
+                    "optional": true,
+                    "optdefault": "1"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "index.js",
+            "line": 322,
+            "description": "对图片混入褐色，显做旧效果",
+            "itemtype": "method",
+            "name": "mixBrown",
+            "params": [
+                {
+                    "name": "customRGB",
+                    "description": "自定义褐色的RGB值,默认[208,163,79]",
+                    "type": "Array",
+                    "optional": true,
+                    "optdefault": "[208,163,79"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "index.js",
+            "line": 343,
+            "description": "混色(混合方法：变暗)",
+            "itemtype": "method",
+            "name": "mixColor",
+            "params": [
+                {
+                    "name": "customRGB",
+                    "description": "需要混入的RGB值",
+                    "type": "Array"
+                }
+            ],
+            "class": "ImageFilter",
+            "module": "imageFilter"
+        },
+        {
+            "file": "index.js",
+            "line": 380,
+            "description": "切割图片",
+            "itemtype": "method",
+            "name": "crop",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "起始位置的x坐标",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "起始位置的y坐标",
+                    "type": "Number"
+                },
+                {
+                    "name": "width",
+                    "description": "切割宽度",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "切割高度",
                     "type": "Number"
                 }
             ],
@@ -160,48 +528,29 @@
         },
         {
             "file": "index.js",
-            "line": 321,
+            "line": 431,
+            "description": "获取图片Base64编码",
             "itemtype": "method",
-            "name": "crop",
-            "params": [
-                {
-                    "name": "x",
-                    "description": "startX",
-                    "type": "Number"
-                },
-                {
-                    "name": "y",
-                    "description": "startY",
-                    "type": "Number"
-                },
-                {
-                    "name": "width",
-                    "description": "width",
-                    "type": "Number"
-                },
-                {
-                    "name": "height",
-                    "description": "height",
-                    "type": "Number"
-                }
-            ],
+            "name": "getImageSrc",
             "return": {
-                "description": "[description]",
-                "type": "[type]"
+                "description": "base64编码后的png图片，可以用在img标签的src属性中。",
+                "type": "String"
             },
             "class": "ImageFilter",
             "module": "imageFilter"
         },
         {
             "file": "index.js",
-            "line": 375,
+            "line": 440,
+            "description": "渲染图片。只有在render后才能在界面上看到图像处理的结果。",
             "itemtype": "method",
             "name": "render",
             "params": [
                 {
                     "name": "target",
-                    "description": "将图像渲染到img节点，默认为初始化时的节点",
-                    "type": "HTML element"
+                    "description": "将图像渲染到target节点(其标签须是img)，默认为组建初始化时传入的节点",
+                    "type": "HTMLElement",
+                    "optional": true
                 }
             ],
             "class": "ImageFilter",
@@ -209,15 +558,16 @@
         },
         {
             "file": "index.js",
-            "line": 385,
+            "line": 451,
+            "description": "销毁组件",
             "itemtype": "method",
-            "name": "destroy 销毁组件",
+            "name": "destroy",
             "class": "ImageFilter",
             "module": "imageFilter"
         },
         {
             "file": "index.js",
-            "line": 395,
+            "line": 461,
             "description": "Converts an RGB color value to HSL. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes r, g, and b are contained in the set [0, 255] and\nreturns h, s, and l in the set [0, 1].",
             "params": [
                 {
@@ -241,7 +591,7 @@
         },
         {
             "file": "index.js",
-            "line": 431,
+            "line": 497,
             "description": "Converts an HSL color value to RGB. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes h, s, and l are contained in the set [0, 1] and\nreturns r, g, and b in the set [0, 255].",
             "params": [
                 {
@@ -267,19 +617,35 @@
     "warnings": [
         {
             "message": "unknown tag: imagefilter",
+            "line": " build\\index.js:7"
+        },
+        {
+            "message": "unknown tag: imagefilter",
             "line": " index.js:1"
         },
         {
             "message": "Missing item type\n转换为灰度图",
-            "line": " index.js:121"
+            "line": " build\\index.js:129"
         },
         {
             "message": "Missing item type\nConverts an RGB color value to HSL. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes r, g, and b are contained in the set [0, 255] and\nreturns h, s, and l in the set [0, 1].",
-            "line": " index.js:395"
+            "line": " build\\index.js:467"
         },
         {
             "message": "Missing item type\nConverts an HSL color value to RGB. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes h, s, and l are contained in the set [0, 1] and\nreturns r, g, and b in the set [0, 255].",
-            "line": " index.js:431"
+            "line": " build\\index.js:503"
+        },
+        {
+            "message": "Missing item type\n转换为灰度图",
+            "line": " index.js:123"
+        },
+        {
+            "message": "Missing item type\nConverts an RGB color value to HSL. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes r, g, and b are contained in the set [0, 255] and\nreturns h, s, and l in the set [0, 1].",
+            "line": " index.js:461"
+        },
+        {
+            "message": "Missing item type\nConverts an HSL color value to RGB. Conversion formula\nadapted from http://en.wikipedia.org/wiki/HSL_color_space.\nAssumes h, s, and l are contained in the set [0, 1] and\nreturns r, g, and b in the set [0, 255].",
+            "line": " index.js:497"
         }
     ]
 }

@@ -67,6 +67,8 @@
                     case "8-2":
                         filter.blur(3).render();  break;
                     case "9":
+                        filter.reverse().render(); break;
+                    case "10":
                         filter.mixBrown().vignetting().blur(1).render();  break;
                 }
 
@@ -124,7 +126,8 @@
         <p><button action="7">混色(rgb,117,117,117)</button></p>
         <p><button action="8-1">高斯模糊(r=1)</button></p>
         <p><button action="8-2">高斯模糊(r=3)</button></p>
-        <p><button action="9">多重处理：做旧,四角压暗,模糊</button></p>
+        <p><button action="9">反色（负片）</button></p>
+        <p><button action="10">多重处理：做旧,四角压暗,模糊</button></p>
     </div>
 
     <div class="content">

@@ -5,6 +5,7 @@
     <title>DEMO imageFilter的图像处理 </title>
     <script src="http://g.tbcdn.cn/kissy/k/1.3.0/kissy-min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="http://g.tbcdn.cn/kissy/k/1.3.0/css/dpl/base-min.css">
+    <link rel="stylesheet" href="./button.css">
 
 </head>
 <body>
@@ -29,6 +30,7 @@
         }
 
         S.use('gallery/imageFilter/1.0/index,dom,node', function (S, ImageFilter,Dom,Node) {
+            var filter = new ImageFilter({ imgNode : S.get("#resultImg")});
 
             //使用fileAPI读取本地文件
             Node.one("#J_selectFile").on("change",function(e){
@@ -36,83 +38,98 @@
                 fileRr.onload = function(){
                     var imgResult =  fileRr.result;
                     Node.all("img").attr("src",imgResult);
-                    updateAllImg();
+                    filter.destroy(); //销毁原实例
+                    filter = new ImageFilter({ imgNode : S.get("#resultImg")});
                 }
                 fileRr.readAsDataURL(this.files[0]);
             });
 
-            function updateAllImg(){
-                new ImageFilter({ imgNode : S.get("#resultImg-1")} ).gray().render().destroy;
-                new ImageFilter({ imgNode : S.get("#resultImg-2")} ).setContrast(80,true).render().destroy();
-                new ImageFilter({ imgNode : S.get("#resultImg-3")} ).blur(3).render().destroy();
-                new ImageFilter({ imgNode : S.get("#resultImg-4")} ).setBrightness(80).render().destroy();
-                new ImageFilter({ imgNode : S.get("#resultImg-5")} ).crop(100,100,200,200).render().destroy();
-                new ImageFilter({ imgNode : S.get("#resultImg-6")} ).mixBrown().vignetting().render().destroy();
-                new ImageFilter({ imgNode : S.get("#resultImg-7")} ).mixColor([117,117,117]).render().destroy();
-            }
+            Node.all("button").on("click",function(e){
+                var action = Node(this).attr("action");
+                if (!action) return;
 
-            updateAllImg();
+                switch(action){
+                    case "1":
+                        filter.gray().render();  break;
+                    case "2":
+                        filter.setContrast(80,true).render();  break;
+                    case "3":
+                        filter.setBrightness(80).render();  break;                        
+                    case "4":
+                        filter.crop(100,100,200,200).render();  break;
+                    case "5":
+                        filter.mixBrown().render();  break;
+                    case "6":
+                        filter.vignetting().render();  break;
+                    case "7":
+                        filter.mixColor([117,117,117]).render();  break;
+                    case "8-1":
+                        filter.blur(1).render();  break;
+                    case "8-2":
+                        filter.blur(3).render();  break;
+                    case "9":
+                        filter.mixBrown().vignetting().blur(1).render();  break;
+                }
+
+            });
 
         });
     </script>
 
     <style>
-        .resultGrid{
+        .side{
+            width: 100px;
+            padding: 10px 30px;
             float: left;
-            margin-left: 20px;
+            margin: 30px;
         }
+
+        .origin{
+            float: left;
+        }
+
+        .result{
+            float: left;
+        }
+
+        .note{
+            clear: both;
+        }
+
     </style>
 
-    <div>
+    <div class="side">
+        <p><button action="1">灰度图</button></p>
+        <p><button action="2">对比度调节</button></p>
+        <p><button action="3">亮度调节</button></p>
+        <p><button action="4">裁剪</button></p>
+        <p><button action="5">做旧效果</button></p>
+        <p><button action="6">四角压暗</button></p>
+        <p><button action="7">混色(rgb,117,117,117)</button></p>
+        <p><button action="8-1">高斯模糊(r=1)</button></p>
+        <p><button action="8-2">高斯模糊(r=3)</button></p>
+        <p><button action="9">多重处理：做旧,四角压暗,模糊</button></p>
+    </div>
+
+    <div class="content">
+        <div class="origin">
+            <h3>原图</h3>
+            <img id="inputImg" src="./sample.jpg" /> <br>
+        </div>
+
+        <div class="result">
+            <h3>处理效果</h3>
+            <img id="resultImg" src="./sample.jpg" />
+        </div>
+    </div>
+
+    <div class="note">
         <p>注：</p>
         <p>1.canvas禁止读取跨域图片数据，故无法使用tps地址提供的图片。此处sample使用的是同域图片。</p>
         <p>2.此功能一般在用户上传图片(e.g.头像/晒图)的场景中使用，借用fileAPI（IE 10.0+）直接读取文件也是个不错的办法。或是在图片上传后由服务器端异步返回解码结果，回填到img节点的src属性，再进行处理。</p>
         <p>3.为保证体验流畅，建议一次处理一张图片</p>
         <p>4.兼容性: canvas为IE 9.0+ , fileAPI要求IE10.0+</p>
-
     </div>
-
-    <div>
-        <h3>原图</h3>
-        <img src="./sample.jpg" /> <br>
-        <hr>
-    </div>
-
-    <div class="resultGrid">
-        <p>灰度处理</p>
-        <img id="resultImg-1" src="./sample.jpg" />
-    </div>
-    
-    <div class="resultGrid">
-        <p>对比度调节</p>
-        <img id="resultImg-2" src="./sample.jpg" />
-    </div>
-
-    <div class="resultGrid">
-        <p>高斯模糊</p>
-        <img id="resultImg-3" src="./sample.jpg" />
-    </div>
-
-    <div class="resultGrid">
-        <p>亮度调节</p>
-        <img id="resultImg-4" src="./sample.jpg" />
-    </div>
-
-    <div class="resultGrid">
-        <p>裁剪</p>
-        <img id="resultImg-5" src="./sample.jpg" />
-    </div>
-
-    <div class="resultGrid">
-        <p>做旧，四角压暗</p>
-        <img id="resultImg-6" src="./sample.jpg" />
-    </div>
-
-    <div class="resultGrid">
-        <p>混色</p>
-        <img id="resultImg-7" src="./sample.jpg" />
-    </div>
-
 </body>
 
 </html>

@@ -169,8 +169,8 @@ KISSY.add('gallery/imageFilter/1.0/index',function (S,Dom, Node,Base) {
         /**
          * 设置图片对比度
          * @method setContrast
-         * @param {[number]} level        对比度等级，取值[-100,100]
-         * @param {[boolean]} [ifCalAverage=false] 是否重新计算亮度值(更精准，但速度慢），false时取默认平均亮度为128
+         * @param {number} level        对比度等级，取值[-100,100]
+         * @param {boolean} [ifCalAverage=false] 是否重新计算亮度值(更精准，但速度慢），false时取默认平均亮度为128
          */
         _self.setContrast = function(level, ifCalAverage){
             var average = 128;
@@ -446,7 +446,7 @@ KISSY.add('gallery/imageFilter/1.0/index',function (S,Dom, Node,Base) {
         /**
          * 渲染图片。只有在render后才能在界面上看到图像处理的结果。
          * @method render
-         * @param  {HTML element} [target] 将图像渲染到target节点(其标签须是img)，默认为组建初始化时传入的节点
+         * @param  {HTMLElement} [target] 将图像渲染到target节点(其标签须是img)，默认为组建初始化时传入的节点
          */
         _self.render = function(target){
             target = target || _imgNode;

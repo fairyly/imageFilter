@@ -23,7 +23,7 @@ imageFilter是一个图像处理的类库，用于实现实现图像滤镜与处
 
 ## API说明
 
-### 基本处理
+<h3>基本处理</h3>
 - blur
 - crop 图像裁剪
 - setBrightness 设置亮度

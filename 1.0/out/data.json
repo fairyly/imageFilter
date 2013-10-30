@@ -111,12 +111,12 @@
                 {
                     "name": "level",
                     "description": "对比度等级，取值[-100,100]",
-                    "type": "[number]"
+                    "type": "Number"
                 },
                 {
                     "name": "ifCalAverage",
                     "description": "是否重新计算亮度值(更精准，但速度慢），false时取默认平均亮度为128",
-                    "type": "[boolean]",
+                    "type": "Boolean",
                     "optional": true,
                     "optdefault": "false"
                 }
@@ -276,7 +276,7 @@
                 {
                     "name": "target",
                     "description": "将图像渲染到target节点(其标签须是img)，默认为组建初始化时传入的节点",
-                    "type": "HTML element",
+                    "type": "HTMLElement",
                     "optional": true
                 }
             ],

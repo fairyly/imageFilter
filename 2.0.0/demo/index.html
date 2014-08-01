@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>DEMO imageFilter的图像处理 </title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.3.0/kissy-min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="http://g.tbcdn.cn/kissy/k/1.3.0/css/dpl/base-min.css">
+
+<script>var S = KISSY;S.config({packages:[{name:"kg",path:"http://g.tbcdn.cn/kg/",charset:"utf-8",ignorePackageNameInUri:true}]});if (S.Config.debug){var srcPath = "../";S.config({packages:[{name:"kg/imagefilter/2.0.0",path:srcPath,charset:"utf-8",ignorePackageNameInUri:true}]});}</script></head>
+<body>
+    <h2>imageFilter的demo</h2>
+
+    <input type="file" id="J_selectFile" />
+    <script>
+        var S = KISSY;
+        S.Config.debug = true;
+        if (S.Config.debug) {
+            var srcPath = "../../../";
+            S.config({
+                packages:[
+                    {
+                        name:"gallery-back",
+                        path:srcPath,
+                        charset:"utf-8",
+                        ignorePackageNameInUri:true
+                    }
+                ]
+            });
+        }
+
+        S.use('kg/imageFilter/2.0.0/index,dom,node', function (S, ImageFilter,Dom,Node) {
+            var filter = new ImageFilter({ imgNode : S.get("#resultImg")});
+
+            //使用fileAPI读取本地文件
+            Node.one("#J_selectFile").on("change",function(e){
+                var fileRr = new FileReader();
+                fileRr.onload = function(){
+                    var imgResult =  fileRr.result;
+                    Node.all("img").attr("src",imgResult);
+                    filter.destroy(); //销毁原实例
+                    filter = new ImageFilter({ imgNode : S.get("#resultImg")});
+                }
+                fileRr.readAsDataURL(this.files[0]);
+            });
+
+            Node.all("button").on("click",function(e){
+                var action = Node(this).attr("action");
+                if (!action) return;
+
+                switch(action){
+                    case "1":
+                        filter.gray().render();  break;
+                    case "2":
+                        filter.setContrast(80,true).render();  break;
+                    case "3":
+                        filter.setBrightness(80).render();  break;                        
+                    case "4":
+                        filter.crop(2.0.0,2.0.0,200,200).render();  break;
+                    case "5":
+                        filter.mixBrown().render();  break;
+                    case "6":
+                        filter.vignetting().render();  break;
+                    case "7":
+                        filter.mixColor([117,117,117]).render();  break;
+                    case "8-1":
+                        filter.blur(1).render();  break;
+                    case "8-2":
+                        filter.blur(3).render();  break;
+                    case "9":
+                        filter.reverse().render(); break;
+                    case "10":
+                        filter.mixBrown().vignetting().blur(1).render();  break;
+                }
+
+            });
+
+        });
+    </script>
+
+    <style>
+        .side{
+            width: 2.0.0px;
+            padding: 10px 30px;
+            float: left;
+            margin: 30px;
+        }
+
+        .origin{
+            float: left;
+        }
+
+        .result{
+            float: left;
+        }
+
+        .note{
+            clear: both;
+        }
+
+        button{
+            background: #FFF;
+            box-shadow: none;
+            border: 1px solid #CCC;
+            padding: 9px;
+            -webkit-transition:0.2s;
+            transition:0.2s;
+        }
+
+        button:hover{
+            background: #CCC;
+            color: #FFF;
+            cursor: pointer;
+            -webkit-transition:0.2s;
+            transition:0.2s;
+        }
+
+    </style>
+
+    <div class="side">
+        <p><button action="1">灰度图</button></p>
+        <p><button action="2">对比度调节</button></p>
+        <p><button action="3">亮度调节</button></p>
+        <p><button action="4">裁剪</button></p>
+        <p><button action="5">做旧效果</button></p>
+        <p><button action="6">四角压暗</button></p>
+        <p><button action="7">混色(rgb,117,117,117)</button></p>
+        <p><button action="8-1">高斯模糊(r=1)</button></p>
+        <p><button action="8-2">高斯模糊(r=3)</button></p>
+        <p><button action="9">反色（负片）</button></p>
+        <p><button action="10">多重处理：做旧,四角压暗,模糊</button></p>
+    </div>
+
+    <div class="content">
+        <div class="origin">
+            <h3>原图</h3>
+            <img id="inputImg" src="./sample.jpg" /> <br>
+        </div>
+
+        <div class="result">
+            <h3>处理效果</h3>
+            <img id="resultImg" src="./sample.jpg" />
+        </div>
+    </div>
+
+    <div class="note">
+        <p>注：</p>
+        <p>1.canvas禁止读取跨域图片数据，故无法使用tps地址提供的图片。此处sample使用的是同域图片。</p>
+        <p>2.此功能一般在用户上传图片(e.g.头像/晒图)的场景中使用，借用fileAPI（IE 10.0+）直接读取文件也是个不错的办法。或是在图片上传后由服务器端异步返回解码结果，回填到img节点的src属性，再进行处理。</p>
+        <p>3.为保证体验流畅，建议一次处理一张图片</p>
+        <p>4.兼容性: canvas为IE 9.0+ , fileAPI要求IE10.0+</p>
+    </div>
+</body>
+
+</html>

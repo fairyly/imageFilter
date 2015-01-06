@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>imageFilter</title>
+    <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com-prettify.css">
+    <link rel="stylesheet" href="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com.css">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdn.staticfile.org/prettify/r298/prettify.min.js"></script>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.8/seed-min.js" data-config="{combine:true}"></script>
+  </head>
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <div id="header"><a href="http://docs.kissyui.com/" class="logo">kissy</a>
+      <nav><a href="http://docs.kissyui.com/1.4/docs/html/coms.html">优秀组件推荐</a></nav>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3 bs-docs-sidebar">
+          <ul data-spy="affix" data-offset-top="0" class="nav nav-list bs-docs-sidenav"></ul>
+        </div>
+        <div class="span9 bs-docs-content">
+          <h1 data-id="undefined" class="title">imageFilter</h1>
+          <p class="author-wrapper"><span>组件有问题？旺旺联系作者：</span><a href="https://github.com/ottomao" target="_blank" data-name="加里" class="author"><img src="https://avatars.githubusercontent.com/u/1622697?v=2&amp;s=60" alt="加里"></a><span class="author-name">加里</span>
+          </p>
+          <div class="common-link"><a href="../demo/index.html" target="_blank" class="demo">示例</a><a href="https://github.com/kissygalleryteam/imageFilter" target="_blank" class="source">源码</a></div>
+          <p class="com-info"><span class="info-label">View</span><span data-com="imageFilter" class="J_View">657</span></p>
+          <p class="com-info"><span class="info-label">所属分类</span><a href="http://kpm.taobao.net/list/图像处理">图像处理</a><span class="info-label tag-label">组件标签</span><a href="http://kpm.taobao.net/list/tag?tag="></a>
+          </p>
+          <p class="com-info"><span class="info-label">kissy版本</span><span>1.4.X</span>
+          </p><h2 id="-">综述</h2>
+<p>imageFilter是一个图像处理的类库，用于实现实现图像滤镜与处理，包括明度、饱和度、高斯模糊、做旧效果、四角压暗、灰度、切割等等。</p>
+<ul>
+<li>版本：2.0.0</li>
+<li>作者：茅晓锋(加里)</li>
+<li>标签：图像处理 canvas html5</li>
+<li>demo：<a href="http://kg.kissyui.com/imageFilter/2.0.0/demo/index.html">http://kg.kissyui.com/imageFilter/2.0.0/demo/index.html</a></li>
+</ul>
+<h2 id="-">快速使用</h2>
+<pre><code>S.use(&#39;kg/imageFilter/2.0.0/index&#39;, function (S, ImageFilter) {
+
+    var srcImage = S.get(&quot;img&quot;);  //页面中需要处理的img节点
+    var myImgFilter = new ImageFilter(srcImage); 
+
+    myImgFilter.gray().blur(3); //灰度处理，高斯模糊。所有处理函数均支持链式表达式。
+    myImgFilter.render();       //将处理结果渲染回页面
+
+    myImgFilter.destroy();      //销毁组件
+});
+</code></pre><h2 id="api-">API说明</h2>
+<h3 id="-">基本处理方法</h3>
+<p><code>crop( x , y , width , height )</code> 图像裁剪</p>
+<ul>
+<li>x,起始位置的x坐标</li>
+<li>y,起始位置的y坐标</li>
+<li>width,切割宽度</li>
+<li>height,切割高度</li>
+</ul>
+<p><code>setBrightness ( level )</code> 设置图片平均亮度</p>
+<ul>
+<li>level ,亮度值,取[-2.0.0,2.0.0]</li>
+</ul>
+<p><code>setContrast ( level , [ifCalAverage=false] )</code> 设置图片对比度</p>
+<ul>
+<li>level ,对比度等级，取值[-2.0.0,2.0.0]</li>
+<li>ifCalAverage，Boolean型，可选，表示是否重新计算亮度值(更精准，但速度慢）。false时取图片默认平均亮度为128。</li>
+</ul>
+<h3 id="-">滤镜处理方法</h3>
+<p><code>blur([radius=1])</code> 对图片做高斯模糊处理</p>
+<ul>
+<li>radius为模糊半径，越大越模糊。必须为大于1的整数。</li>
+</ul>
+<p><code>mixBrown ( [customRGB=[208,163,79] )</code> 对图片混入褐色，显做旧效果</p>
+<ul>
+<li>customRGB, 自定义褐色的RGB值,默认[208,163,79]</li>
+</ul>
+<p><code>mixColor(customRGB)</code> 混色(混合方法：变暗)</p>
+<ul>
+<li>customRGB ,需要混入的RGB值,数组，形如[255,0,138]</li>
+</ul>
+<p><code>reverse()</code>  对图片做反色处理（负片效果）</p>
+<p><code>vignetting ( maxLevel  radius )</code> 对图片做四角压暗/四角变亮</p>
+<ul>
+<li>maxLevel ,最边缘处的亮度值，[-2.0.0,2.0.0]</li>
+<li>radius ，中心半径值，默认为半宽度的0.35倍</li>
+</ul>
+<h3 id="-">其它方法</h3>
+<p><code>destroy()</code> 销毁组件</p>
+<p><code>getImageSrc()</code> 获取图像的Base64编码</p>
+<p><code>render([target])</code> 渲染处理后的图片</p>
+<ul>
+<li>target，可选，将图像渲染到target节点(其标签须是img)。默认为组建初始化时传入的节点。</li>
+</ul>
+<h2 id="-">其它说明</h2>
+<ul>
+<li>canvas禁止读取跨域图片数据，故无法使用tps地址提供的图片。此处sample使用的是同域图片。</li>
+<li>此功能一般在用户上传图片(e.g.头像/晒图)的场景中使用，借用fileAPI（IE 10.0+）直接读取文件也是个不错的办法。或是在图片上传后由服务器端异步返回解码结果，回填到img节点的src属性，再进行处理。</li>
+<li>为保证体验流畅，建议一次处理一张图片</li>
+<li>兼容性: canvas为IE 9.0+ , fileAPI要求IE10.0+</li>
+</ul>
+
+          <div style="display:none;"><script type="text/javascript" src="http://tajs.qq.com/stats?sId=36378479" charset="UTF-8"></script></div>
+          <script src="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com.js"></script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
